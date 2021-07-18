@@ -38,5 +38,7 @@ target_compile_definitions(playersView
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 target_link_libraries(playersView
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core 
-  Qt${QT_VERSION_MAJOR}::Quick)
+  PRIVATE
+  Qt${QT_VERSION_MAJOR}::Core
+  Qt${QT_VERSION_MAJOR}::Quick
+)

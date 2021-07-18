@@ -19,7 +19,7 @@ void PlayerViewControl::setup(const QVariantList &players)
         return;
     }
 
-    const QMetaObject *metaObject = QMetaType::metaObjectForType(players[0].userType());
+    const QMetaObject *metaObject = QMetaType(players.at(0).userType()).metaObject();
 
     QVariantList playersMapped;
 

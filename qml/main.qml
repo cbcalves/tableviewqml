@@ -15,7 +15,6 @@ Window {
     }
 
     Component.onCompleted: {
-        console.error(playersLoaded);
         playerView.show(playersLoaded);
     }
 }
