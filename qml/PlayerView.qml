@@ -11,20 +11,53 @@ Item {
         control.setup( players );
     }
 
+    onWidthChanged: {
+        tableView.forceLayout();
+    }
+
     PlayerViewControl {
         id: control
 
         onClear: tableModel.clear();
 
         onSetRows: function ( players ) {
-            console.error(JSON.stringify(players));
             tableModel.rows = players;
         }
 
     }
 
+    Rectangle {
+        id: header
+        anchors.top: parent.top
+        width: parent.width
+        height: 40
+
+        Row {
+            anchors.fill: parent
+
+            Repeater {
+                id: repeater
+                model: ["Type", "Speed", "Ammunition", "Active", "Coordinates" ]
+                Rectangle {
+                    height: parent.height
+                    width: parent.width / 5
+                    border.width: 1
+                    border.color: "#bdc3c7"
+                    color: "#ecf0f1"
+                    Text {
+                        anchors.centerIn: parent
+                        text: modelData
+                    }
+                }
+            }
+        }
+    }
+
     TableView {
-          anchors.fill: parent
+          id: tableView
+          anchors.top: header.bottom
+          anchors.bottom: root.bottom
+          width: parent.width
           columnSpacing: 1
           rowSpacing: 1
 
@@ -39,8 +72,8 @@ Item {
           }
 
           delegate: Rectangle {
-              implicitWidth: 100
-              implicitHeight: 50
+              implicitWidth: root.width / 5
+              implicitHeight: 40
 
               Text {
                   text: model.display
